@@ -10,6 +10,8 @@ jobs:
       - run: ls -l loadtests/main.js
       - run: mkdir loadimpact
       - run: mkdir loadimpact/k6
+      - run: chown -R $USER:root loadimpact/k6
+      - run: chmod 777 loadimpact/k6
       - run: loadimpact/k6 -q -o cloud loadtests/main.js
       - run: echo "test"
       - run: echo "test1"
