@@ -22,49 +22,6 @@ test:
   override:
     - ~/loadimpact/k6 -q -o cloud loadtests/main.js
 
-      andriod:
-        docker:
-          - image: loadimpact/k6
-        steps:
-          - checkout
-          - run: chown -R $USER:root loadtests/main.js
-          - run: chmod 777 loadtests/main.js -R
-          - run: ls -l loadtests/main.js
-          - run: mkdir loadimpact
-          - run: mkdir loadimpact/k6
-          - run: chown -R $USER:root loadimpact/
-          - run: chmod 777 loadimpact/ -R
-          - run: ls -l loadimpact
-          - run: k6 run loadtests/main.js
-          - run: echo "test"
-          - run: echo "test1"
-          - run: echo "TOMMM"
-          - run: echo "test87787454"
-
-
-
-          ios:
-            docker:
-              - image: loadimpact/k6
-            steps:
-              - checkout
-              - run: chown -R $USER:root loadtests/main.js
-              - run: chmod 777 loadtests/main.js -R
-              - run: ls -l loadtests/main.js
-              - run: mkdir loadimpact
-              - run: mkdir loadimpact/k6
-              - run: chown -R $USER:root loadimpact/
-              - run: chmod 777 loadimpact/ -R
-              - run: ls -l loadimpact
-              - run: k6 run loadtests/main.js
-              - run: echo "test"
-              - run: echo "test1"
-              - run: echo "TOMMM"
-              - run: echo "test87787454"
-
-
-
-
 test1:
   docker:
     - image: loadimpact/k6
