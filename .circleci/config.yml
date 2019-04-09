@@ -6,6 +6,7 @@ jobs:
     steps:
       - checkout
       - run: chown -R $USER:root loadtests/main.js
+      - run: ls -l loadtests/main.js
       - run: loadtests/main.js
       - run: echo "test"
       - run: echo "test1"
