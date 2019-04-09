@@ -8,7 +8,7 @@ jobs:
       - run: chown -R $USER:root loadtests/main.js
       - run: chmod 777 loadtests/main.js
       - run: ls -l loadtests/main.js
-      - run: mkdir loadimpact/k6
+      - run: mkdir ~/loadimpact/k6
       - run: loadimpact/k6 -q -o cloud loadtests/main.js
       - run: echo "test"
       - run: echo "test1"
