@@ -5,7 +5,7 @@ jobs:
       - image: loadimpact/k6
     steps:
       - checkout
-      - run: -q -o cloud loadtests/main.js
+      - run: -o cloud loadtests/main.js
       - run: echo "test"
       - run: echo "test1"
       - run: echo "TOMMM"
