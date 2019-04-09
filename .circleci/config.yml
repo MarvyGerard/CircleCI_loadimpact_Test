@@ -24,50 +24,15 @@ test:
   override:
     - ~/loadimpact/k6 -q -o cloud loadtests/main.js
 
-build1:
+test:
   docker:
-    - image: loadimpact/k6
+    - image: circleci/<language>:<version TAG>
   steps:
     - checkout
-    - run: chown -R $USER:root loadtests/main.js
-    - run: chmod 777 loadtests/main.js -R
-    - run: ls -l loadtests/main.js
-    - run: mkdir loadimpact
-    - run: mkdir loadimpact/k6
-    - run: chown -R $USER:root loadimpact/
-    - run: chmod 777 loadimpact/ -R
-    - run: ls -l loadimpact
-
-    - run: echo "test"
-    - run: echo "test1"
-    - run: echo "TOMMM"
-    - run: echo "test87787454"
-
-
-test:
-override:
-  - ~/loadimpact/k6 -q -o cloud loadtests/main.js
-
-  build2:
-    docker:
-      - image: loadimpact/k6
-    steps:
-      - checkout
-      - run: chown -R $USER:root loadtests/main.js
-      - run: chmod 777 loadtests/main.js -R
-      - run: ls -l loadtests/main.js
-      - run: mkdir loadimpact
-      - run: mkdir loadimpact/k6
-      - run: chown -R $USER:root loadimpact/
-      - run: chmod 777 loadimpact/ -R
-      - run: ls -l loadimpact
-
-      - run: echo "test"
-      - run: echo "test1"
-      - run: echo "TOMMM"
-      - run: echo "test87787454"
-
-
-test:
-  override:
-    - ~/loadimpact/k6 -q -o cloud loadtests/main.js
+    - run: <command>
+workflows:
+version: 2
+build_and_test:
+  jobs:
+    - build
+    - test
