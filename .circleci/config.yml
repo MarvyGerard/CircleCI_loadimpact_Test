@@ -5,7 +5,7 @@ jobs:
       - image: loadimpact/k6
     steps:
       - checkout
-      - run: sudo loadtests/main.js
+      - run: main.js
       - run: echo "test"
       - run: echo "test1"
       - run: echo "TOMMM"
