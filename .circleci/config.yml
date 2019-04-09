@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: loadimpact/loadgentest-k6
+      - image: loadimpact/loadgentest-k6;
 
       dependencies:
   cache_directories:
