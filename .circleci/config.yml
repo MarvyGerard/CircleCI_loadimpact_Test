@@ -6,12 +6,12 @@ jobs:
     steps:
       - checkout
       - run: chown -R $USER:root loadtests/main.js
-      - run: chmod 777 loadtests/main.js
+      - run: chmod 777 loadtests/main.js -R
       - run: ls -l loadtests/main.js
       - run: mkdir loadimpact
       - run: mkdir loadimpact/k6
-      - run: chown -R $USER:root loadimpact/k6
-      - run: chmod 777 loadimpact/k6
+      - run: chown -R $USER:root loadimpact
+      - run: chmod 777 loadimpact/ -R
       - run: loadimpact/k6 -q -o cloud loadtests/main.js
       - run: echo "test"
       - run: echo "test1"
