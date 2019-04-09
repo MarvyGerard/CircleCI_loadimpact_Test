@@ -3,12 +3,7 @@ jobs:
   build:
     docker:
       - image: loadimpact/loadgentest-k6
-    steps:
-      - run: echo "A first hello"
-      - run: echo "test"
-      - run: echo "test1"
-      - run: echo "TOMMM"
-      - run: echo "test87787454"
+
       dependencies:
   cache_directories:
     - "~/k6-bin"
