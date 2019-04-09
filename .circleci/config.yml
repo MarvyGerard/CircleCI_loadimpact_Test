@@ -9,6 +9,3 @@ dependencies:
         tar -xvzf k6-v0.15.0-linux64.tar.gz;
         mv k6-v0.15.0-linux64/k6 ~/k6-bin/k6;
       fi
-test:
-  override:
-    - ~/k6-bin/k6 run -q cloud loadtests/main.js
