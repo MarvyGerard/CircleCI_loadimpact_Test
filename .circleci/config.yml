@@ -9,6 +9,7 @@ jobs:
       - run: chmod 777 loadtests/main.js -R
       - run: ls -l loadtests/main.js
       - run: mkdir loadimpact
+      - run: mkdir loadimpact/k6
       - run: chown -R $USER:root loadimpact
       - run: chmod 777 loadimpact/ -R
       - run: ls -l loadimpact
