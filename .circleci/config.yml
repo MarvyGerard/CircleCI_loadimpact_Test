@@ -24,12 +24,12 @@ test:
   override:
     - ~/loadimpact/k6 -q -o cloud loadtests/main.js
 
-test:
+test1:
   docker:
-    - image: circleci/<language>:<version TAG>
+    - image: loadimpact/k6
   steps:
     - checkout
-    - run: <command>
+    - run: echo "test"
 workflows:
 version: 2
 build_and_test:
