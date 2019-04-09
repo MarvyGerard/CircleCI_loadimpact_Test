@@ -13,7 +13,7 @@ jobs:
       - run: chown -R $USER:root loadimpact/
       - run: chmod 777 loadimpact/ -R
       - run: ls -l loadimpact
-      - run: loadimpact/ -q -o cloud loadtests/main.js
+      - run: k6 run loadtests/main.js
       - run: echo "test"
       - run: echo "test1"
       - run: echo "TOMMM"
