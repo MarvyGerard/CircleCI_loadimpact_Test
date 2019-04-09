@@ -10,6 +10,9 @@ jobs:
       - run: echo "test1"
       - run: echo "TOMMM"
       - run: echo "test87787454"
+      dependencies:
+  cache_directories:
+    - "~/k6-bin"
 
         post:
     - mkdir -p ~/k6-bin
