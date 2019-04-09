@@ -10,3 +10,14 @@ jobs:
       - run: echo "test1"
       - run: echo "TOMMM"
       - run: echo "test87787454"
+
+        post:
+    - mkdir -p ~/k6-bin
+    - |
+      if [[ ! -f ~/k6-bin/k6 ]]; then
+        mv loadimpact/loadgentest-k6 ~/k6-bin/k6;
+      fi
+
+test:
+  override:
+    - ~/k6-bin/k6 run -q -o cloud loadtests/main.js
