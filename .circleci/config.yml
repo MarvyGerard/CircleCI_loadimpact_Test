@@ -11,4 +11,4 @@ dependencies:
       fi
 test:
   override:
-    - ~/k6-bin/k6 run -q -o cloud loadtests/main.js
+    - ~/k6-bin/k6 run -q cloud loadtests/main.js
