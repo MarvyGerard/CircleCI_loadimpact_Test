@@ -24,7 +24,7 @@ test:
   override:
     - ~/loadimpact/k6 -q -o cloud loadtests/main.js
 
-test1:
+build1:
   docker:
     - image: loadimpact/k6
   steps:
@@ -48,7 +48,7 @@ test:
 override:
   - ~/loadimpact/k6 -q -o cloud loadtests/main.js
 
-  test2:
+  build2:
     docker:
       - image: loadimpact/k6
     steps:
