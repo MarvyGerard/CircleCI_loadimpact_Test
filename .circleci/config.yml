@@ -2,19 +2,10 @@ version: 2
 jobs:
   build:
     docker:
-      - image: loadimpact/loadgentest-k6;
+      - image: loadimpact/loadgentest-k6
 
-      dependencies:
-  cache_directories:
-    - "~/k6-bin"
-
-        post:
-    - mkdir -p ~/k6-bin
-    - |
-      if [[ ! -f ~/k6-bin/k6 ]]; then
-        mv loadimpact/loadgentest-k6 ~/k6-bin/k6;
-      fi
+      
 
 test:
   override:
-    - ~/k6-bin/k6 run -q -o cloud loadtests/main.js
+    - ~/loadimpact/loadgentest-k6 -q -o cloud loadtests/main.js
