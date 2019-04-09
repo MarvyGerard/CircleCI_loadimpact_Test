@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: loadimpact/loadgentest-k6
+      - image: loadimpact/k6
     steps:
       - checkout
       - run: echo "A first hello"
@@ -14,4 +14,4 @@ jobs:
 
 test:
   override:
-    - ~/loadimpact/loadgentest-k6 -q -o cloud loadtests/main.js
+    - ~/loadimpact/k6 -q -o cloud loadtests/main.js
