@@ -1,26 +1,75 @@
-# version: 2
-# jobs:
-#   build:
-#     docker:
-#       - image: loadimpact/k6
-#     steps:
-#       - checkout
-#       - run: chown -R $USER:root loadtests/main.js
-#       - run: chmod 777 loadtests/main.js -R
-#       - run: ls -l loadtests/main.js
-#       - run: mkdir loadimpact
-#       - run: mkdir loadimpact/k6
-#       - run: chown -R $USER:root loadimpact/
-#       - run: chmod 777 loadimpact/ -R
-#       - run: ls -l loadimpact
-#       - run: k6 run loadtests/main.js
-#       - run: echo "test"
-#       - run: echo "test1"
-#       - run: echo "TOMMM"
-#       - run: echo "test"
-# test:
-#   override:
-#     - ~/loadimpact/k6 -q -o cloud loadtests/main.js
+ # version: 2
+ # jobs:
+ #   build:
+ #     docker:
+ #       - image: loadimpact/k6
+ #     steps:
+ #       - checkout
+ #       - run: chown -R $USER:root loadtests/main.js
+ #       - run: chmod 777 loadtests/main.js -R
+ #       - run: ls -l loadtests/main.js
+ #       - run: mkdir loadimpact
+ #       - run: mkdir loadimpact/k6
+ #       - run: chown -R $USER:root loadimpact/
+ #       - run: chmod 777 loadimpact/ -R
+ #       - run: ls -l loadimpact
+ #       - run: k6 run loadtests/main.js
+ #       - run: echo "test"
+ #       - run: echo "test1"
+ #       - run: echo "TOMMM"
+ #       - run: echo "test"
+ # test:
+ #   override:
+ #     - ~/loadimpact/k6 -q -o cloud loadtests/main.js
+
+
+
+
+
+
+
+
+
+ version: 2
+ jobs:
+   build:
+     docker:
+       - image: loadimpact/k6
+     steps:
+       - checkout
+       - run: chown -R $USER:root loadtests/main.js
+       - run: chmod 777 loadtests/main.js -R
+       - run: ls -l loadtests/main.js
+       - run: mkdir loadimpact
+       - run: mkdir loadimpact/k6
+       - run: chown -R $USER:root loadimpact/
+       - run: chmod 777 loadimpact/ -R
+       - run: mv loadtests/main.js loadimpact/
+       - run: ls -l loadimpact
+       - run: k6 run loadimpact/main.js
+       - run: echo "test"
+       - run: echo "test1"
+       - run: echo "TOMMM"
+       - run: echo "test"
+ test:
+   override:
+     - loadimpact/ -q -o cloud loadtests/main.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # test1:
 #   docker:
@@ -29,36 +78,36 @@
 #     - checkout
 #     - run: echo "test"
 
-version: 2
-jobs:
-  build:
-    docker:
-      - image: loadimpact/k6
-    steps:
-        - checkout
-        - run: chown -R $USER:root loadtests/main.js
-        - run: chmod 777 loadtests/main.js -R
-        - run: ls -l loadtests/main.js
-        - run: mkdir loadimpact
-        - run: mkdir loadimpact/k6
-        - run: chown -R $USER:root loadimpact/
-        - run: chmod 777 loadimpact/ -R
-        - run: ls -l loadimpact
-        - run: k6 run loadtests/main.js
-        - run: echo "test"
-        - run: echo "test1"
-        - run: echo "TOMMM"
-        - run: echo "testss"
-  test:
-    docker:
-      - image: circleci/node:jessie-browsers
-    steps:
-      - checkout
-      - run: mkdir test-reports
-      - run:
-          name: Download Selenium
-          command: curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
-      - run:
-          name: Start Selenium
-          command: java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
-          background: true
+# version: 2
+# jobs:
+#   build:
+#     docker:
+#       - image: loadimpact/k6
+#     steps:
+#         - checkout
+#         - run: chown -R $USER:root loadtests/main.js
+#         - run: chmod 777 loadtests/main.js -R
+#         - run: ls -l loadtests/main.js
+#         - run: mkdir loadimpact
+#         - run: mkdir loadimpact/k6
+#         - run: chown -R $USER:root loadimpact/
+#         - run: chmod 777 loadimpact/ -R
+#         - run: ls -l loadimpact
+#         - run: k6 run loadtests/main.js
+#         - run: echo "test"
+#         - run: echo "test1"
+#         - run: echo "TOMMM"
+#         - run: echo "testss"
+#   test:
+#     docker:
+#       - image: circleci/node:jessie-browsers
+#     steps:
+#       - checkout
+#       - run: mkdir test-reports
+#       - run:
+#           name: Download Selenium
+#           command: curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
+#       - run:
+#           name: Start Selenium
+#           command: java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
+#           background: true
