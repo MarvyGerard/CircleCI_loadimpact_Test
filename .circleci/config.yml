@@ -74,21 +74,11 @@ jobs:
       - run: mv loadtests/main.js loadimpact/
       - run: ls -l loadimpact
       - run: k6 run loadimpact/main.js
-      - run: k6 run -o cloud loadimpact/main.js
   test:
     docker:
       - image: loadimpact/k6
     steps:
       - checkout
-            - run: chown -R $USER:root loadtests/main.js
-            - run: chmod 777 loadtests/main.js -R
-            - run: ls -l loadtests/main.js
-            - run: mkdir loadimpact
-            - run: mkdir loadimpact/k6
-            - run: chown -R $USER:root loadimpact/
-            - run: chmod 777 loadimpact/ -R
-            - run: mv loadtests/main.js loadimpact/
-            - run: ls -l loadimpact
             - run: k6 run -o cloud loadimpact/main.js
 workflows:
   version: 2
