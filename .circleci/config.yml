@@ -17,7 +17,7 @@ jobs:
       - run: echo "test"
       - run: echo "test1"
       - run: echo "TOMMM"
-      - run: echo "test87787454"
+      - run: echo "test"
 test:
   override:
     - ~/loadimpact/k6 -q -o cloud loadtests/main.js
