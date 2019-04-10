@@ -74,6 +74,7 @@ jobs:
       - run: mv loadtests/main.js loadimpact/
       - run: ls -l loadimpact
       - run: k6 run loadimpact/main.js
+      - run: echo "Done"
   test:
     docker:
       - image: loadimpact/k6
@@ -88,6 +89,7 @@ jobs:
       - run: chmod 777 loadimpact/ -R
       - run: mv loadtests/main.js loadimpact/
       - run: k6 run -o cloud loadimpact/main.js
+      - run: echo "Done"
 workflows:
   version: 2
   build_and_test:
