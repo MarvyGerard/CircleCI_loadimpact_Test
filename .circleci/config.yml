@@ -79,7 +79,7 @@ jobs:
       - image: loadimpact/k6
     steps:
       - checkout
-            - run: k6 run -o cloud loadimpact/main.js
+      - run: k6 run -o cloud loadimpact/main.js
 workflows:
   version: 2
   build_and_test:
