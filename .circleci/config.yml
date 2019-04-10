@@ -22,9 +22,9 @@ test:
   override:
     - ~/loadimpact/k6 -q -o cloud loadtests/main.js
 
-test1:
-  docker:
-    - image: loadimpact/k6
-  steps:
-    - checkout
-    - run: echo "test"
+# test1:
+#   docker:
+#     - image: loadimpact/k6
+#   steps:
+#     - checkout
+#     - run: echo "test"
