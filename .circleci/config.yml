@@ -48,7 +48,7 @@ jobs:
         - run: echo "test"
         - run: echo "test1"
         - run: echo "TOMMM"
-        - run: echo "test"
+        - run: echo "testss"
   test:
     docker:
       - image: circleci/node:jessie-browsers
