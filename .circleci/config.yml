@@ -35,6 +35,9 @@
    build:
      docker:
        - image: loadimpact/k6
+
+       parallelism: 4
+       
      steps:
        - checkout
        - run: chown -R $USER:root loadtests/main.js
