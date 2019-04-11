@@ -60,7 +60,7 @@
 version: 2
 jobs:
   node:
-  android:
+  build:
     docker:
       - image: loadimpact/k6
     steps:
@@ -76,7 +76,7 @@ jobs:
       - run: ls -l loadimpact
       - run: k6 run loadimpact/main.js
       - run: echo "Done"
-  ios:
+  test:
     docker:
       - image: loadimpact/k6
     steps:
@@ -93,13 +93,13 @@ jobs:
       - run: echo "Done"
 workflows:
   version: 2
-  node-android-ios:
+  node-build-test:
     jobs:
       - node
-      - android:
+      - build:
         requires:
           - node
-      - ios:
+      - test:
         requires:
           - node
 
