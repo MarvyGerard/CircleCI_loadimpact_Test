@@ -1,0 +1,65 @@
+version: 2
+jobs:
+  lint:
+    docker:
+      - image: loadimpact/k6
+    steps:
+      - checkout
+      - run: echo "lint"
+
+
+
+  test:
+    docker:
+      - image: loadimpact/k6
+    steps:
+      - checkout
+      - run: echo "test"
+
+
+  test-prev-golang:
+    docker:
+      - image: loadimpact/k6
+    steps:
+      - checkout
+      - run: echo "test-prev-golang"
+
+  build-docker-images:
+    docker:
+      - image: circleci/golang:1.12
+    steps:
+      - checkout
+      - run: echo "build-docker-images"
+
+
+  build-linux-packages:
+    docker:
+      - image: circleci/golang:1.12
+    steps:
+      - checkout
+      - run: echo "build-linux-packages"
+
+workflows:
+  version: 2
+  test_and_build:
+    jobs:
+      - lint:
+          filters:
+            tags:
+              only: /.*/
+      - test:
+          filters:
+            tags:
+              only: /.*/
+      - test-prev-golang:
+          filters:
+            tags:
+              only: /.*/
+      - build-docker-images:
+          requires:
+            - lint
+            - test
+      - build-linux-packages:
+          requires:
+            - lint
+            - test
