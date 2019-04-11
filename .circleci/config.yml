@@ -58,7 +58,7 @@
 
 
 version: 2
-K6:
+jobs:
   build:
     docker:
       - image: loadimpact/k6
@@ -75,7 +75,7 @@ K6:
       - run: ls -l loadimpact
       - run: k6 run loadimpact/main.js
       - run: echo "Done"
-  loadimpactInsight:
+  test1:
     docker:
       - image: loadimpact/k6
     steps:
@@ -90,13 +90,36 @@ K6:
       - run: mv loadtests/main.js loadimpact/
       - run: k6 run -o cloud loadimpact/main.js
       - run: echo "Done"
+
+      test2:
+        docker:
+          - image: loadimpact/k6
+        steps:
+          - checkout
+          - run: echo "Test2"
+
+          test3:
+            docker:
+              - image: loadimpact/k6
+            steps:
+              - checkout
+              - run: echo "Test3"
+
+              test4:
+                docker:
+                  - image: loadimpact/k6
+                steps:
+                  - checkout
+                  - run: echo "Test4"
 workflows:
   version: 2
   build_and_test:
     jobs:
-      - K6
-      - loadimpactInsight
-      
+      - build
+      - test1
+      - test2
+      - test3
+      - test4
 
 
 
