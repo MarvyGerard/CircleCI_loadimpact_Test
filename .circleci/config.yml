@@ -59,7 +59,8 @@
 
 version: 2
 jobs:
-  build:
+  node:
+  android:
     docker:
       - image: loadimpact/k6
     steps:
@@ -75,7 +76,7 @@ jobs:
       - run: ls -l loadimpact
       - run: k6 run loadimpact/main.js
       - run: echo "Done"
-  test1:
+  ios:
     docker:
       - image: loadimpact/k6
     steps:
@@ -90,36 +91,18 @@ jobs:
       - run: mv loadtests/main.js loadimpact/
       - run: k6 run -o cloud loadimpact/main.js
       - run: echo "Done"
-
-      test2:
-        docker:
-          - image: loadimpact/k6
-        steps:
-          - checkout
-          - run: echo "Test2"
-
-          test3:
-            docker:
-              - image: loadimpact/k6
-            steps:
-              - checkout
-              - run: echo "Test3"
-
-              test4:
-                docker:
-                  - image: loadimpact/k6
-                steps:
-                  - checkout
-                  - run: echo "Test4"
 workflows:
   version: 2
-  build_and_test:
+  node-android-ios:
     jobs:
-      - build
-      - test1
-      - test2
-      - test3
-      - test4
+      - node
+      - android:
+        requires:
+          - node
+      - ios:
+        requires:
+          - node
+
 
 
 
