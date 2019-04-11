@@ -97,6 +97,15 @@ workflows:
       - build
       - test
 
+      version: 2
+      node:
+        build:
+          docker:
+            - image: loadimpact/k6
+          steps:
+            - checkout
+            - run: echo "Test"
+
 
 
 
