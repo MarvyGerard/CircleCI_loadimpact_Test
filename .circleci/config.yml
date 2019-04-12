@@ -57,65 +57,15 @@
 
 
 
-version: 2
-jobs:
-  node:
-    docker:
-      - image: loadimpact/k6
-    steps:
-      - checkout
-      - run: echo "envioremnt"
-
-  build:
-    docker:
-      - image: loadimpact/k6
-    steps:
-      - checkout
-      - run: chown -R $USER:root loadtests/main.js
-      - run: chmod 777 loadtests/main.js -R
-      - run: ls -l loadtests/main.js
-      - run: mkdir loadimpact
-      - run: mkdir loadimpact/k6
-      - run: chown -R $USER:root loadimpact/
-      - run: chmod 777 loadimpact/ -R
-      - run: mv loadtests/main.js loadimpact/
-      - run: k6 run -o cloud loadimpact/main.js
-      - run: echo "Done"
-
-  test:
-    docker:
-      - image: loadimpact/k6
-    steps:
-      - checkout
-      - run: chown -R $USER:root loadtests/main.js
-      - run: chmod 777 loadtests/main.js -R
-      - run: ls -l loadtests/main.js
-      - run: mkdir loadimpact
-      - run: mkdir loadimpact/k6
-      - run: chown -R $USER:root loadimpact/
-      - run: chmod 777 loadimpact/ -R
-      - run: mv loadtests/main.js loadimpact/
-      - run: k6 run -o cloud loadimpact/main.js
-      - run: echo "Done"
-workflows:
-  version: 2
-  node-build-test:
-    jobs:
-      - node
-      - build:
-        requires:
-          - node
-      - test:
-        requires:
-          - node
-
-
-
-
-
-#good config
 # version: 2
 # jobs:
+#   node:
+#     docker:
+#       - image: loadimpact/k6
+#     steps:
+#       - checkout
+#       - run: echo "envioremnt"
+#
 #   build:
 #     docker:
 #       - image: loadimpact/k6
@@ -129,9 +79,9 @@ workflows:
 #       - run: chown -R $USER:root loadimpact/
 #       - run: chmod 777 loadimpact/ -R
 #       - run: mv loadtests/main.js loadimpact/
-#       - run: ls -l loadimpact
-#       - run: k6 run loadimpact/main.js
+#       - run: k6 run -o cloud loadimpact/main.js
 #       - run: echo "Done"
+#
 #   test:
 #     docker:
 #       - image: loadimpact/k6
@@ -149,10 +99,60 @@ workflows:
 #       - run: echo "Done"
 # workflows:
 #   version: 2
-#   build_and_test:
+#   node-build-test:
 #     jobs:
-#       - build
-#       - test
+#       - node
+#       - build:
+#         requires:
+#           - node
+#       - test:
+#         requires:
+#           - node
+
+
+
+
+
+#good config
+version: 2
+jobs:
+  build:
+    docker:
+      - image: loadimpact/k6
+    steps:
+      - checkout
+      - run: chown -R $USER:root loadtests/main.js
+      - run: chmod 777 loadtests/main.js -R
+      - run: ls -l loadtests/main.js
+      - run: mkdir loadimpact
+      - run: mkdir loadimpact/k6
+      - run: chown -R $USER:root loadimpact/
+      - run: chmod 777 loadimpact/ -R
+      - run: mv loadtests/main.js loadimpact/
+      - run: ls -l loadimpact
+      - run: k6 run loadimpact/main.js
+      - run: echo "Done"
+  test:
+    docker:
+      - image: loadimpact/k6
+    steps:
+      - checkout
+      - run: chown -R $USER:root loadtests/main.js
+      - run: chmod 777 loadtests/main.js -R
+      - run: ls -l loadtests/main.js
+      - run: mkdir loadimpact
+      - run: mkdir loadimpact/k6
+      - run: chown -R $USER:root loadimpact/
+      - run: chmod 777 loadimpact/ -R
+      - run: mv loadtests/main.js loadimpact/
+      - run: k6 run -o cloud loadimpact/main.js
+      - run: echo "Done"
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test
 
 
 
