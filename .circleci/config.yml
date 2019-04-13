@@ -131,7 +131,7 @@ jobs:
       - run: mv loadtests/main.js loadimpact/
       - run: ls -l loadimpact
       - run: k6 run loadimpact/main.js
-      - run: echo "Done!"
+      - run: echo "Done!!!"
   test:
     docker:
       - image: loadimpact/k6
